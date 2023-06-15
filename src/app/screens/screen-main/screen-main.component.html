@@ -1,0 +1,35 @@
+<mat-drawer-container class="example-container" autosize>
+  <div class="example-sidenav-content">
+    <button
+      type="button"
+      color="primary"
+      mat-mini-fab
+      style="border-radius: 0%"
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <span class="upload-button">
+    <input
+      type="file"
+      class="file-input d-none"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+
+    <div class="file-upload">
+      {{ fileName || "No file uploaded yet." }}
+
+      <button mat-mini-fab color="primary" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+  </span>
+
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <app-marginal-settings
+      (boonWeights)="changeValue($event)"
+    ></app-marginal-settings>
+  </mat-drawer>
+</mat-drawer-container>

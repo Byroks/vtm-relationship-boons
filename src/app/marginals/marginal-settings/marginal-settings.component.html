@@ -1,0 +1,73 @@
+<form class="d-flex flex-column">
+  <mat-form-field class="example-full-width" matTooltip="Info about the action">
+    <mat-label>Number of Boons</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="Ex. double your city population"
+      value="40"
+    />
+  </mat-form-field>
+  <mat-card class="example-result-card">
+    <mat-card-content class="d-flex flex-column">
+      <mat-label>Trivial Boons {{ boonsValues.trivial }}%</mat-label>
+      <mat-slider discrete [step]="stepValue">
+        <input
+          matSliderThumb
+          [(ngModel)]="boonsValues.trivial"
+          [value]="boonsValues.trivial"
+          [name]="'trivial'"
+        />
+      </mat-slider>
+    </mat-card-content>
+
+    <mat-card-content class="d-flex flex-column">
+      <mat-label>Minor Boons {{ boonsValues.minor }}%</mat-label>
+      <mat-slider discrete [step]="stepValue">
+        <input
+          matSliderThumb
+          [(ngModel)]="boonsValues.minor"
+          [value]="boonsValues.minor"
+          [name]="'minor'"
+        />
+      </mat-slider>
+    </mat-card-content>
+
+    <mat-card-content class="d-flex flex-column">
+      <mat-label>Moderate Boons {{ boonsValues.moderate }}%</mat-label>
+      <mat-slider discrete [step]="stepValue">
+        <input
+          matSliderThumb
+          [(ngModel)]="boonsValues.moderate"
+          [value]="boonsValues.moderate"
+          [name]="'moderate'"
+        />
+      </mat-slider>
+    </mat-card-content>
+
+    <mat-card-content class="d-flex flex-column">
+      <mat-label>Major Boons {{ boonsValues.major }}%</mat-label>
+      <mat-slider discrete [step]="stepValue">
+        <input
+          matSliderThumb
+          [(ngModel)]="boonsValues.major"
+          [value]="boonsValues.major"
+          [name]="'major'"
+          (ngOnChanges)="(boonsValues.major)"
+        />
+      </mat-slider>
+    </mat-card-content>
+
+    <mat-card-content class="d-flex flex-column">
+      <mat-label>Life Boons {{ boonsValues.life }}%</mat-label>
+      <mat-slider discrete [step]="stepValue" [disabled]="step">
+        <input matSliderThumb [(ngModel)]="boonsValues.life" [name]="'life'" />
+      </mat-slider>
+    </mat-card-content>
+    <mat-error *ngIf="error">Sum of Percentages can't exceed 100%</mat-error>
+  </mat-card>
+
+  <mat-checkbox class="example-margin" [name]="'step'" [(ngModel)]="step"
+    >Step</mat-checkbox
+  >
+</form>
