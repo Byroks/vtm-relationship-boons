@@ -8,23 +8,31 @@ import { Boons } from 'src/app/boons';
   styleUrls: ['./screen-main.component.scss'],
 })
 export class ScreenMainComponent {
-  boonWeights?: Boons;
-
-  fileName = '';
   constructor(private http: HttpClient) {}
+
+  boonWeights?: Boons;
+  file?: File;
+  send = false;
+  fileName = '';
+
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
+    this.file = event.target.files[0];
+    if (this.file) {
+      this.fileName = this.file.name;
+    }
+  }
+
+  onSend() {
+    if (this.file) {
       const formData = new FormData();
-      formData.append('thumbnail', file);
-      const upload$ = this.http.post('/api/thumbnail-upload', formData);
+      formData.append('file', this.file);
+      const upload$ = this.http.post('/api/file-upload', formData);
       upload$.subscribe();
+      this.send = true;
     }
   }
 
   changeValue(input: Boons) {
     this.boonWeights = input;
-    console.log(this.boonWeights);
   }
 }

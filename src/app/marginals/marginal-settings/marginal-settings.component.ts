@@ -15,17 +15,12 @@ export class MarginalSettingsComponent {
     moderate: 10,
     major: 5,
     life: 0,
+    amount: 40,
   };
 
   step = true;
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    // this.boonWeights.emit(changes['value']);
-  }
-
   onChanges() {
-    console.log(this.boonsValues);
     this.boonWeights.emit(this.boonsValues);
   }
 

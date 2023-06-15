@@ -1,4 +1,4 @@
-.example-container {
+.content-container {
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
@@ -8,14 +8,19 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-.example-sidenav-content {
+.side-button {
   display: flex;
   align-items: start;
   justify-content: start;
 }
 
-.example-sidenav {
+.sidenav {
   padding: 20px;
+}
+
+.file-send {
+  padding-top: 20px;
 }

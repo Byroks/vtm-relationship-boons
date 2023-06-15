@@ -1,5 +1,5 @@
-<mat-drawer-container class="example-container" autosize>
-  <div class="example-sidenav-content">
+<mat-drawer-container class="content-container" autosize>
+  <div class="side-button">
     <button
       type="button"
       color="primary"
@@ -25,9 +25,17 @@
         <mat-icon>attach_file</mat-icon>
       </button>
     </div>
+    <div class="file-send">
+      {{ send ? "Redestribute" : "Distribute" }}
+
+      <button mat-mini-fab color="primary" (click)="onSend()">
+        <mat-icon *ngIf="!send">check</mat-icon>
+        <mat-icon *ngIf="send">restart_alt</mat-icon>
+      </button>
+    </div>
   </span>
 
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer #drawer class="sidenav" mode="side">
     <app-marginal-settings
       (boonWeights)="changeValue($event)"
     ></app-marginal-settings>

@@ -4,4 +4,5 @@ export interface Boons {
   moderate: number;
   major: number;
   life: number;
+  amount: number;
 }
