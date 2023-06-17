@@ -10,12 +10,14 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
+
   <span class="upload-button">
     <input
       type="file"
       class="file-input d-none"
       (change)="onFileSelected($event)"
       #fileUpload
+      requiredFileType="image/png"
     />
 
     <div class="file-upload">
@@ -26,17 +28,18 @@
       </button>
     </div>
     <div class="file-send">
-      {{ send ? "Redestribute" : "Distribute" }}
+      {{ getSend ? "Redestribute" : "Distribute" }}
 
       <button mat-mini-fab color="primary" (click)="onSend()">
-        <mat-icon *ngIf="!send">check</mat-icon>
-        <mat-icon *ngIf="send">restart_alt</mat-icon>
+        <mat-icon *ngIf="!getSend">check</mat-icon>
+        <mat-icon *ngIf="getSend">restart_alt</mat-icon>
       </button>
     </div>
   </span>
 
   <mat-drawer #drawer class="sidenav" mode="side">
     <app-marginal-settings
+      [boonValues]="boonWeights"
       (boonWeights)="changeValue($event)"
     ></app-marginal-settings>
   </mat-drawer>

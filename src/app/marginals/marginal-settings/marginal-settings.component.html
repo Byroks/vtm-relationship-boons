@@ -6,20 +6,20 @@
     <input
       type="number"
       [name]="'amount'"
-      [value]="boonsValues.amount"
-      [(ngModel)]="boonsValues.amount"
+      [value]="boonValues.amount"
+      [(ngModel)]="boonValues.amount"
       matInput
       placeholder="Ex. double your city population"
     />
   </mat-form-field>
   <mat-card class="card">
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Trivial Boons {{ boonsValues.trivial }}%</mat-label>
+      <mat-label>Trivial Boons {{ boonValues.trivial }}%</mat-label>
       <mat-slider discrete [step]="stepValue">
         <input
           matSliderThumb
-          [(ngModel)]="boonsValues.trivial"
-          [value]="boonsValues.trivial"
+          [(ngModel)]="boonValues.trivial"
+          [value]="boonValues.trivial"
           [name]="'trivial'"
           (valueChange)="onChanges()"
         />
@@ -27,12 +27,12 @@
     </mat-card-content>
 
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Minor Boons {{ boonsValues.minor }}%</mat-label>
+      <mat-label>Minor Boons {{ boonValues.minor }}%</mat-label>
       <mat-slider discrete [step]="stepValue">
         <input
           matSliderThumb
-          [(ngModel)]="boonsValues.minor"
-          [value]="boonsValues.minor"
+          [(ngModel)]="boonValues.minor"
+          [value]="boonValues.minor"
           [name]="'minor'"
           (valueChange)="onChanges()"
         />
@@ -40,12 +40,12 @@
     </mat-card-content>
 
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Moderate Boons {{ boonsValues.moderate }}%</mat-label>
+      <mat-label>Moderate Boons {{ boonValues.moderate }}%</mat-label>
       <mat-slider discrete [step]="stepValue">
         <input
           matSliderThumb
-          [(ngModel)]="boonsValues.moderate"
-          [value]="boonsValues.moderate"
+          [(ngModel)]="boonValues.moderate"
+          [value]="boonValues.moderate"
           [name]="'moderate'"
           (valueChange)="onChanges()"
         />
@@ -53,12 +53,12 @@
     </mat-card-content>
 
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Major Boons {{ boonsValues.major }}%</mat-label>
+      <mat-label>Major Boons {{ boonValues.major }}%</mat-label>
       <mat-slider discrete [step]="stepValue">
         <input
           matSliderThumb
-          [(ngModel)]="boonsValues.major"
-          [value]="boonsValues.major"
+          [(ngModel)]="boonValues.major"
+          [value]="boonValues.major"
           [name]="'major'"
           (valueChange)="onChanges()"
         />
@@ -66,12 +66,12 @@
     </mat-card-content>
 
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Life Boons {{ boonsValues.life }}%</mat-label>
+      <mat-label>Life Boons {{ boonValues.life }}%</mat-label>
       <mat-slider discrete [step]="stepValue">
         <input
           matSliderThumb
-          [(ngModel)]="boonsValues.life"
-          [value]="boonsValues.life"
+          [(ngModel)]="boonValues.life"
+          [value]="boonValues.life"
           [name]="'life'"
           (valueChange)="onChanges()"
         />

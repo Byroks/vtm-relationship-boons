@@ -1,19 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Boons } from 'src/app/boons';
+import { QueryService } from 'src/app/services/query-service.service';
 
 @Component({
   selector: 'app-screen-main',
   templateUrl: './screen-main.component.html',
   styleUrls: ['./screen-main.component.scss'],
 })
-export class ScreenMainComponent {
-  constructor(private http: HttpClient) {}
+export class ScreenMainComponent implements OnInit {
+  public boonWeights?: Boons;
+  private file?: File;
+  private send = false;
+  public fileName = '';
 
-  boonWeights?: Boons;
-  file?: File;
-  send = false;
-  fileName = '';
+  constructor(private queryService: QueryService) {}
+
+  ngOnInit() {
+    this.queryService.getDefaultWeights().subscribe((data) => {
+      this.boonWeights = data;
+    });
+  }
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
@@ -24,9 +30,7 @@ export class ScreenMainComponent {
 
   onSend() {
     if (this.file) {
-      const formData = new FormData();
-      formData.append('file', this.file);
-      const upload$ = this.http.post('/api/file-upload', formData);
+      const upload$ = this.queryService.postUploadFile(this.file);
       upload$.subscribe();
       this.send = true;
     }
@@ -34,5 +38,9 @@ export class ScreenMainComponent {
 
   changeValue(input: Boons) {
     this.boonWeights = input;
+  }
+
+  get getSend() {
+    return this.send;
   }
 }

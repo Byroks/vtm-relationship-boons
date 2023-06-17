@@ -1,4 +1,10 @@
-import { Component, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Output,
+  Input,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
 import { Boons } from 'src/app/boons';
 
 @Component({
@@ -8,20 +14,13 @@ import { Boons } from 'src/app/boons';
 })
 export class MarginalSettingsComponent {
   @Output() boonWeights = new EventEmitter<Boons>();
-
-  boonsValues: Boons = {
-    trivial: 35,
-    minor: 50,
-    moderate: 10,
-    major: 5,
-    life: 0,
-    amount: 40,
-  };
-
+  @Input() boonValues?: any;
   step = true;
 
   onChanges() {
-    this.boonWeights.emit(this.boonsValues);
+    if (!this.error) {
+      this.boonWeights.emit(this.boonValues);
+    }
   }
 
   get stepValue() {
@@ -29,11 +28,11 @@ export class MarginalSettingsComponent {
   }
 
   get error() {
-    return this.boonsValues.life +
-      this.boonsValues.major +
-      this.boonsValues.moderate +
-      this.boonsValues.minor +
-      this.boonsValues.trivial >
+    return this.boonValues.life +
+      this.boonValues.major +
+      this.boonValues.moderate +
+      this.boonValues.minor +
+      this.boonValues.trivial >
       100
       ? true
       : false;
