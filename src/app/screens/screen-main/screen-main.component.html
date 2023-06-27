@@ -35,6 +35,25 @@
         <mat-icon *ngIf="getSend">restart_alt</mat-icon>
       </button>
     </div>
+
+    <span *ngIf="getSend" class="d-flex align-items-center flex-column">
+      <div>
+        {{ fileName }}
+        <a [href]="jsonUrl" download="{{ fileName }}">
+          <button type="button" color="primary" mat-mini-fab>
+            <mat-icon>download</mat-icon>
+          </button>
+        </a>
+      </div>
+      <div>
+        boon-list.csv
+        <a [href]="csvUrl" download="boon-list.csv">
+          <button #csvDownload type="button" color="primary" mat-mini-fab>
+            <mat-icon>download</mat-icon>
+          </button>
+        </a>
+      </div>
+    </span>
   </span>
 
   <mat-drawer #drawer class="sidenav" mode="side">

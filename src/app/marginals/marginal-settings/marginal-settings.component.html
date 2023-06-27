@@ -1,8 +1,12 @@
-<form class="d-flex flex-column">
+<form *ngIf="boonValues" class="d-flex flex-column">
+  <mat-error *ngIf="boonValues.amount <= 0"
+    >Amount of boons must be positive</mat-error
+  >
   <mat-form-field
     matTooltip="The number of boons that will be distributed in your city."
   >
     <mat-label>Number of Boons</mat-label>
+
     <input
       type="number"
       [name]="'amount'"
@@ -12,6 +16,7 @@
       placeholder="Ex. double your city population"
     />
   </mat-form-field>
+
   <mat-card class="card">
     <mat-card-content class="d-flex flex-column">
       <mat-label>Trivial Boons {{ boonValues.trivial }}%</mat-label>
