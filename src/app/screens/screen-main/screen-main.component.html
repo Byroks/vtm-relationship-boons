@@ -27,12 +27,12 @@
         <mat-icon>attach_file</mat-icon>
       </button>
     </div>
-    <div class="file-send">
-      {{ getSend ? "Redestribute" : "Distribute" }}
+    <div *ngIf="fileName" class="file-send">
+      Generate Boons
 
       <button mat-mini-fab color="primary" (click)="onSend()">
         <mat-icon *ngIf="!getSend">check</mat-icon>
-        <mat-icon *ngIf="getSend">restart_alt</mat-icon>
+        <mat-icon *ngIf="getSend">autorenew</mat-icon>
       </button>
     </div>
 
@@ -41,7 +41,7 @@
         {{ fileName }}
         <a [href]="jsonUrl" download="{{ fileName }}">
           <button type="button" color="primary" mat-mini-fab>
-            <mat-icon>download</mat-icon>
+            <mat-icon>file_download</mat-icon>
           </button>
         </a>
       </div>
@@ -49,7 +49,7 @@
         boon-list.csv
         <a [href]="csvUrl" download="boon-list.csv">
           <button #csvDownload type="button" color="primary" mat-mini-fab>
-            <mat-icon>download</mat-icon>
+            <mat-icon>file_download</mat-icon>
           </button>
         </a>
       </div>

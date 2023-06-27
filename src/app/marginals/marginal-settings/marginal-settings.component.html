@@ -1,9 +1,9 @@
 <form *ngIf="boonValues" class="d-flex flex-column">
-  <mat-error *ngIf="boonValues.amount <= 0"
+  <mat-error *ngIf="boonValues.amount < 0"
     >Amount of boons must be positive</mat-error
   >
   <mat-form-field
-    matTooltip="The number of boons that will be distributed in your city."
+    matTooltip="The number of boons that will be distributed in your city. Leave at 0 or emtpy for automatic calculation (x1.3 the amount of NPC Kindred)"
   >
     <mat-label>Number of Boons</mat-label>
 
@@ -85,5 +85,8 @@
     <mat-error *ngIf="error">Sum of Percentages can't exceed 100%</mat-error>
   </mat-card>
 
-  <mat-checkbox [name]="'step'" [(ngModel)]="step">Step</mat-checkbox>
+  <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
+  <button color="primary" mat-mini-fab (click)="resetWeights()">
+    <mat-icon>settings_backup_restore</mat-icon>
+  </button>
 </form>

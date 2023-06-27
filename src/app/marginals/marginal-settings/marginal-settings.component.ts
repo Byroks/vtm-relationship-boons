@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Boons } from 'src/app/boons';
+import { QueryService } from 'src/app/services/query-service.service';
 
 @Component({
   selector: 'app-marginal-settings',
@@ -17,10 +18,18 @@ export class MarginalSettingsComponent {
   @Input() boonValues?: any;
   step = true;
 
+  constructor(private queryService: QueryService) {}
+
   onChanges() {
     if (!this.error) {
       this.boonWeights.emit(this.boonValues);
     }
+  }
+
+  public resetWeights() {
+    this.queryService.getDefaultWeights().subscribe((data) => {
+      this.boonValues = data;
+    });
   }
 
   get stepValue() {

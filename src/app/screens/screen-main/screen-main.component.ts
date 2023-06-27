@@ -13,7 +13,7 @@ import { QueryService } from 'src/app/services/query-service.service';
   templateUrl: './screen-main.component.html',
   styleUrls: ['./screen-main.component.scss'],
 })
-export class ScreenMainComponent implements OnInit, AfterViewInit {
+export class ScreenMainComponent implements OnInit {
   @ViewChild('csvDownload') csvDownload?: ElementRef;
   public boonWeights?: Boons;
   private uploadfile?: File;
@@ -27,12 +27,6 @@ export class ScreenMainComponent implements OnInit, AfterViewInit {
   constructor(private queryService: QueryService) {}
 
   ngOnInit() {
-    this.queryService.getDefaultWeights().subscribe((data) => {
-      this.boonWeights = data;
-    });
-  }
-
-  ngAfterViewInit() {
     this.queryService.getDefaultWeights().subscribe((data) => {
       this.boonWeights = data;
     });
