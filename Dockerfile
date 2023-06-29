@@ -13,4 +13,4 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=builder dist /usr/share/nginx/html
+COPY --from=builder /usr/app/dist/vtm-relationship-boons /usr/share/nginx/html
