@@ -14,7 +14,6 @@ import { QueryService } from 'src/app/services/query-service.service';
   styleUrls: ['./screen-main.component.scss'],
 })
 export class ScreenMainComponent implements OnInit {
-  @ViewChild('csvDownload') csvDownload?: ElementRef;
   public boonWeights?: Boons;
   private uploadfile?: File;
   private send = false;
@@ -22,7 +21,6 @@ export class ScreenMainComponent implements OnInit {
   private fileContent: any;
   public jsonUrl: any;
   public csvUrl: any;
-  public toggle = false;
 
   constructor(private queryService: QueryService) {}
 
@@ -58,7 +56,7 @@ export class ScreenMainComponent implements OnInit {
     if (this.uploadfile) {
       const upload$ = this.queryService.postUploadFile({
         file: JSON.parse(this.fileContent),
-        weights: this.boonWeights,
+        weights: { boons: this.boonWeights, connections: undefined },
       });
       upload$.subscribe((x) => {
         this.downloadFile(x.csv, true);
