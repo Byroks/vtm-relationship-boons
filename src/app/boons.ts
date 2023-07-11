@@ -6,3 +6,7 @@ export interface Boons {
   life: number;
   amount: number;
 }
+
+export interface Dictionary {
+  [index: string]: number;
+}
