@@ -1,3 +1,14 @@
 .card {
   width: 24rem;
+  width: 100%;
+}
+
+.side-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.settings-buttons {
+  padding: 1rem;
 }

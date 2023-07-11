@@ -11,8 +11,16 @@ export class QueryService {
 
   url = 'http://95.111.232.136:3000';
 
-  getDefaultWeights(): Observable<Boons> {
+  getDefaultWeights(): Observable<any> {
     return this.http.get<Boons>(`${this.url}/api/default-weights`);
+  }
+
+  getDefaultBoonWeights(): Observable<Boons> {
+    return this.http.get<Boons>(`${this.url}/api/boon-weights`);
+  }
+
+  getDefaultConnectionWeights(): Observable<any> {
+    return this.http.get<Boons>(`${this.url}/api/connection-weights`);
   }
 
   postUploadFile(file: any): Observable<any> {

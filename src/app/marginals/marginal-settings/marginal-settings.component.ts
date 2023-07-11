@@ -1,11 +1,5 @@
-import {
-  Component,
-  Output,
-  Input,
-  EventEmitter,
-  SimpleChanges,
-} from '@angular/core';
-import { Boons } from 'src/app/boons';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Boons, Dictionary } from 'src/app/boons';
 import { QueryService } from 'src/app/services/query-service.service';
 
 @Component({
@@ -15,8 +9,11 @@ import { QueryService } from 'src/app/services/query-service.service';
 })
 export class MarginalSettingsComponent {
   @Output() boonWeights = new EventEmitter<Boons>();
-  @Input() boonValues?: any;
+  @Input() boonValues?: Boons;
+  @Output() connectionWeights = new EventEmitter<Dictionary>();
+  @Input() connectionValues?: Dictionary;
   step = true;
+  public showDistribution = true;
 
   constructor(private queryService: QueryService) {}
 
@@ -27,9 +24,23 @@ export class MarginalSettingsComponent {
   }
 
   public resetWeights() {
-    this.queryService.getDefaultWeights().subscribe((data) => {
-      this.boonValues = data;
-    });
+    if (this.showDistribution) {
+      this.queryService.getDefaultBoonWeights().subscribe((data) => {
+        this.boonValues = data;
+      });
+    } else {
+      this.queryService.getDefaultConnectionWeights().subscribe((data) => {
+        this.connectionValues = data;
+      });
+    }
+  }
+
+  public formatLabel(value: number): string {
+    return `${value * 2}`;
+  }
+
+  switchView() {
+    this.showDistribution = !this.showDistribution;
   }
 
   get stepValue() {
@@ -37,11 +48,11 @@ export class MarginalSettingsComponent {
   }
 
   get error() {
-    return this.boonValues.life +
-      this.boonValues.major +
-      this.boonValues.moderate +
-      this.boonValues.minor +
-      this.boonValues.trivial >
+    return this.boonValues!.life +
+      this.boonValues!.major +
+      this.boonValues!.moderate +
+      this.boonValues!.minor +
+      this.boonValues!.trivial >
       100
       ? true
       : false;

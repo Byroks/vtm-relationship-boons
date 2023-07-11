@@ -15,18 +15,21 @@ import { QueryService } from 'src/app/services/query-service.service';
 })
 export class ScreenMainComponent implements OnInit {
   public boonWeights?: Boons;
-  private uploadfile?: File;
-  private send = false;
+  public connectionWeights: any;
   public fileName = '';
-  private fileContent: any;
   public jsonUrl: any;
   public csvUrl: any;
+
+  private fileContent: any;
+  private uploadfile?: File;
+  private send = false;
 
   constructor(private queryService: QueryService) {}
 
   ngOnInit() {
     this.queryService.getDefaultWeights().subscribe((data) => {
-      this.boonWeights = data;
+      this.boonWeights = data.boons;
+      this.connectionWeights = data.connections;
     });
   }
 
@@ -56,7 +59,10 @@ export class ScreenMainComponent implements OnInit {
     if (this.uploadfile) {
       const upload$ = this.queryService.postUploadFile({
         file: JSON.parse(this.fileContent),
-        weights: { boons: this.boonWeights, connections: undefined },
+        weights: {
+          boons: this.boonWeights,
+          connections: this.connectionWeights,
+        },
       });
       upload$.subscribe((x) => {
         this.downloadFile(x.csv, true);
@@ -66,7 +72,7 @@ export class ScreenMainComponent implements OnInit {
     }
   }
 
-  changeValue(input: Boons) {
+  changeValue(input: any) {
     this.boonWeights = input;
   }
 

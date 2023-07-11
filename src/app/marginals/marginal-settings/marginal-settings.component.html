@@ -1,7 +1,21 @@
-<form *ngIf="boonValues" class="d-flex flex-column">
-  <mat-error *ngIf="boonValues.amount < 0"
-    >Amount of boons must be positive</mat-error
+<div class="side-button">
+  <button
+    type="button"
+    color="primary"
+    mat-mini-fab
+    style="border-radius: 0%"
+    (click)="switchView()"
   >
+    <mat-icon>sync</mat-icon>
+  </button>
+</div>
+
+<form *ngIf="boonValues && showDistribution" class="d-flex flex-column">
+  <h2>Boon Distribution</h2>
+
+  <mat-error *ngIf="boonValues.amount < 0">
+    Amount of boons must be positive
+  </mat-error>
   <mat-form-field
     matTooltip="The number of boons that will be distributed in your city. Leave at 0 or emtpy for automatic calculation (x1.3 the amount of NPC Kindred)"
   >
@@ -85,8 +99,45 @@
     <mat-error *ngIf="error">Sum of Percentages can't exceed 100%</mat-error>
   </mat-card>
 
-  <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
-  <button color="primary" mat-mini-fab (click)="resetWeights()">
-    <mat-icon>settings_backup_restore</mat-icon>
-  </button>
+  <span class="d-flex justify-content-between w-100 settings-buttons">
+    <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
+    <button color="primary" mat-mini-fab (click)="resetWeights()">
+      <mat-icon>settings_backup_restore</mat-icon>
+    </button>
+  </span>
+</form>
+
+<form *ngIf="connectionValues && !showDistribution" class="d-flex flex-column">
+  <h2>Connection Weights</h2>
+
+  <mat-card>
+    <mat-card-content
+      *ngFor="let connection of connectionValues | keyvalue"
+      class="d-flex flex-column"
+    >
+      <mat-label>{{ connection.key }}</mat-label>
+      <mat-slider
+        discrete
+        [step]="step ? 2.5 : 0.5"
+        min="-50"
+        max="50"
+        [displayWith]="formatLabel"
+      >
+        <input
+          matSliderThumb
+          [(ngModel)]="connection.value"
+          [value]="connection.value"
+          [name]="connection.key"
+          (valueChange)="onChanges()"
+        />
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+
+  <span class="d-flex justify-content-between w-100 settings-buttons">
+    <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
+    <button color="primary" mat-mini-fab (click)="resetWeights()">
+      <mat-icon>settings_backup_restore</mat-icon>
+    </button>
+  </span>
 </form>
