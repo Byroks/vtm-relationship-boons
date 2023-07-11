@@ -60,6 +60,8 @@
     <app-marginal-settings
       [boonValues]="boonWeights"
       (boonWeights)="changeValue($event)"
+      [connectionValues]="connectionWeights"
+      (connectionWeights)="changeValue($event)"
     ></app-marginal-settings>
   </mat-drawer>
 </mat-drawer-container>
