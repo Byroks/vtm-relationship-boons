@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Boons } from 'src/app/boons';
 import { QueryService } from 'src/app/services/query-service.service';
 
@@ -15,7 +16,7 @@ import { QueryService } from 'src/app/services/query-service.service';
 })
 export class ScreenMainComponent implements OnInit {
   public boonWeights?: Boons;
-  public connectionWeights: any;
+  public connectionWeights: Map<string, number> = new Map<string, number>();
   public fileName = '';
   public jsonUrl: any;
   public csvUrl: any;
@@ -24,12 +25,16 @@ export class ScreenMainComponent implements OnInit {
   private uploadfile?: File;
   private send = false;
 
-  constructor(private queryService: QueryService) {}
+  constructor(private queryService: QueryService, private titleService: Title) {
+    this.titleService.setTitle('Boons by Night');
+  }
 
   ngOnInit() {
     this.queryService.getDefaultWeights().subscribe((data) => {
       this.boonWeights = data.boons;
-      this.connectionWeights = data.connections;
+      for (let key in data.connections) {
+        this.connectionWeights.set(key, data.connections[key]);
+      }
     });
   }
 
@@ -61,7 +66,7 @@ export class ScreenMainComponent implements OnInit {
         file: JSON.parse(this.fileContent),
         weights: {
           boons: this.boonWeights,
-          connections: this.connectionWeights,
+          connections: Object.fromEntries(this.connectionWeights),
         },
       });
       upload$.subscribe((x) => {
@@ -72,8 +77,12 @@ export class ScreenMainComponent implements OnInit {
     }
   }
 
-  changeValue(input: any) {
+  changeBoon(input: any) {
     this.boonWeights = input;
+  }
+
+  changeConnection(input: any) {
+    this.connectionWeights = input;
   }
 
   get getSend() {

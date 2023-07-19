@@ -59,9 +59,9 @@
   <mat-drawer #drawer class="sidenav" mode="side">
     <app-marginal-settings
       [boonValues]="boonWeights"
-      (boonWeights)="changeValue($event)"
+      (boonWeights)="changeBoon($event)"
       [connectionValues]="connectionWeights"
-      (connectionWeights)="changeValue($event)"
+      (connectionWeights)="changeConnection($event)"
     ></app-marginal-settings>
   </mat-drawer>
 </mat-drawer-container>

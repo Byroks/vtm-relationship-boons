@@ -110,7 +110,7 @@
 <form *ngIf="connectionValues && !showDistribution" class="d-flex flex-column">
   <h2>Connection Weights</h2>
 
-  <mat-card>
+  <mat-card class="card">
     <mat-card-content
       *ngFor="let connection of connectionValues | keyvalue"
       class="d-flex flex-column"
@@ -118,7 +118,7 @@
       <mat-label>{{ connection.key }}</mat-label>
       <mat-slider
         discrete
-        [step]="step ? 2.5 : 0.5"
+        [step]="step ? 5 : 1"
         min="-50"
         max="50"
         [displayWith]="formatLabel"
@@ -128,9 +128,31 @@
           [(ngModel)]="connection.value"
           [value]="connection.value"
           [name]="connection.key"
-          (valueChange)="onChanges()"
+          (valueChange)="onChanges(connection.key, connection.value)"
         />
       </mat-slider>
+    </mat-card-content>
+    <mat-card-content
+      class="d-flex justify-content-between w-100 settings-buttons"
+    >
+      <mat-form-field>
+        <mat-label>New Connection Label</mat-label>
+        <input
+          matInput
+          [(ngModel)]="newConnection"
+          [value]="newConnection"
+          [name]="'newConnection'"
+          placeholder="New Connection"
+        />
+      </mat-form-field>
+      <button
+        class="mt-2"
+        color="primary"
+        mat-mini-fab
+        (click)="addConnection()"
+      >
+        <mat-icon>control_point</mat-icon>
+      </button>
     </mat-card-content>
   </mat-card>
 
