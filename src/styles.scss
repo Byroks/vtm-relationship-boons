@@ -1,3 +1,24 @@
+@use "@angular/material" as mat;
+// Include non-theme styles for core.
+@include mat.core();
+
+// Define a theme.
+$my-primary: mat.define-palette(mat.$purple-palette, 700, 500, 800);
+$my-accent: mat.define-palette(mat.$indigo-palette, A200, A100, A400);
+
+$my-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -11,5 +32,4 @@ body {
 
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~material-design-icons/iconfont/material-icons.css";

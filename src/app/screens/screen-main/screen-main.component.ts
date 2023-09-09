@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Boons } from 'src/app/boons';
 import { QueryService } from 'src/app/services/query-service.service';
@@ -20,6 +14,7 @@ export class ScreenMainComponent implements OnInit {
   public fileName = '';
   public jsonUrl: any;
   public csvUrl: any;
+  public newConnection = false;
 
   private fileContent: any;
   private uploadfile?: File;
@@ -67,6 +62,7 @@ export class ScreenMainComponent implements OnInit {
         weights: {
           boons: this.boonWeights,
           connections: Object.fromEntries(this.connectionWeights),
+          newConnection: this.newConnection,
         },
       });
       upload$.subscribe((x) => {

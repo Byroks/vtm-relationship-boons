@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { Boons, Dictionary } from 'src/app/boons';
+import { Boons } from 'src/app/boons';
 import { QueryService } from 'src/app/services/query-service.service';
 
 @Component({

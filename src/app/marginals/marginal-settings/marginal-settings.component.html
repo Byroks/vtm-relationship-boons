@@ -30,11 +30,12 @@
       placeholder="Ex. double your city population"
     />
   </mat-form-field>
-
   <mat-card class="card">
     <mat-card-content class="d-flex flex-column">
-      <mat-label>Trivial Boons {{ boonValues.trivial }}%</mat-label>
-      <mat-slider discrete [step]="stepValue">
+      <mat-label class="mat-label"
+        >Trivial Boons {{ boonValues.trivial }}%</mat-label
+      >
+      <mat-slider color="accent" discrete [step]="stepValue">
         <input
           matSliderThumb
           [(ngModel)]="boonValues.trivial"
@@ -47,7 +48,7 @@
 
     <mat-card-content class="d-flex flex-column">
       <mat-label>Minor Boons {{ boonValues.minor }}%</mat-label>
-      <mat-slider discrete [step]="stepValue">
+      <mat-slider color="accent" discrete [step]="stepValue">
         <input
           matSliderThumb
           [(ngModel)]="boonValues.minor"
@@ -60,7 +61,7 @@
 
     <mat-card-content class="d-flex flex-column">
       <mat-label>Moderate Boons {{ boonValues.moderate }}%</mat-label>
-      <mat-slider discrete [step]="stepValue">
+      <mat-slider color="accent" discrete [step]="stepValue">
         <input
           matSliderThumb
           [(ngModel)]="boonValues.moderate"
@@ -73,7 +74,7 @@
 
     <mat-card-content class="d-flex flex-column">
       <mat-label>Major Boons {{ boonValues.major }}%</mat-label>
-      <mat-slider discrete [step]="stepValue">
+      <mat-slider color="accent" discrete [step]="stepValue">
         <input
           matSliderThumb
           [(ngModel)]="boonValues.major"
@@ -86,7 +87,7 @@
 
     <mat-card-content class="d-flex flex-column">
       <mat-label>Life Boons {{ boonValues.life }}%</mat-label>
-      <mat-slider discrete [step]="stepValue">
+      <mat-slider color="accent" discrete [step]="stepValue">
         <input
           matSliderThumb
           [(ngModel)]="boonValues.life"
@@ -100,8 +101,10 @@
   </mat-card>
 
   <span class="d-flex justify-content-between w-100 settings-buttons">
-    <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
-    <button color="primary" mat-mini-fab (click)="resetWeights()">
+    <mat-checkbox color="accent" [name]="'step'" [(ngModel)]="step"
+      >5% Step</mat-checkbox
+    >
+    <button color="accent" mat-mini-fab (click)="resetWeights()">
       <mat-icon>settings_backup_restore</mat-icon>
     </button>
   </span>
@@ -117,6 +120,7 @@
     >
       <mat-label>{{ connection.key }}</mat-label>
       <mat-slider
+        color="accent"
         discrete
         [step]="step ? 5 : 1"
         min="-50"
@@ -147,7 +151,7 @@
       </mat-form-field>
       <button
         class="mt-2"
-        color="primary"
+        color="accent"
         mat-mini-fab
         (click)="addConnection()"
       >
@@ -157,8 +161,10 @@
   </mat-card>
 
   <span class="d-flex justify-content-between w-100 settings-buttons">
-    <mat-checkbox [name]="'step'" [(ngModel)]="step">5% Step</mat-checkbox>
-    <button color="primary" mat-mini-fab (click)="resetWeights()">
+    <mat-checkbox color="accent" [name]="'step'" [(ngModel)]="step"
+      >5% Step</mat-checkbox
+    >
+    <button color="accent" mat-mini-fab (click)="resetWeights()">
       <mat-icon>settings_backup_restore</mat-icon>
     </button>
   </span>
