@@ -9,7 +9,7 @@ import { Boons } from 'src/app/boons';
 export class QueryService {
   constructor(private http: HttpClient) {}
 
-  url = 'https://95.111.232.136:3000';
+  url = 'https://boonsbynight.com';
 
   getDefaultWeights(): Observable<any> {
     return this.http.get<Boons>(`${this.url}/api/default-weights`);
