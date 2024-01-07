@@ -18,6 +18,8 @@ Important to note is, that the boons will only be distributed between kindred an
 
 If you want to support this project, feel free to open an Issue for feature request or even add it yourself! If you want to add a feature, create a Pull Request to the Develop branch and I will regularly merge it so Master so the new features go live.
 
+Any questions, feel free to ping me on Discord @Byroks
+
 ### Installation
 
 #### 1. Clone the repository
